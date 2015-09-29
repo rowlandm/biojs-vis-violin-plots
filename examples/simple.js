@@ -75,10 +75,7 @@ var tooltip2 = d3.tip()
 
 
 
-data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-data_url = '../data/ds_id_2000_scatter_stat1.tsv';
-data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
-data_url = '../data/6081_pdgfra.tsv';
+data_url = '../data/test.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
@@ -169,7 +166,7 @@ d3.tsv(data_url,function (error,data){
         probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
         //if no order is given then the order from the data set is taken
-        sample_type_order:"EXE,high-high,high-high-high,low-low,mid-mid,neg-neg",
+        sample_type_order:"x,hh,hhh,ll,mm,nn",
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
