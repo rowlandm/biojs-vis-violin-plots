@@ -169,7 +169,7 @@ d3.tsv(data_url,function (error,data){
         probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
         //if no order is given then the order from the data set is taken
-        sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_type_order:"EXE,high-high,high-high-high,low-low,mid-mid,neg-neg",
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
