@@ -1,5 +1,5 @@
 // if you don't specify a html file, the sniper will generate a div with id "rootDiv"
-var app = require("biojs-vis-scatter-plot");
+var app = require("biojs-vis-violin-plot");
 function round_to_two_decimal_places(num){
     new_num = Math.round(num * 100) / 100;
     return new_num;
@@ -81,6 +81,7 @@ var tooltip2 = d3.tip()
 data_url= '../data/ds_id_5003_scatter_gata3.tsv';
 data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
+data_url = '../data/6081_pdgfra.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
@@ -97,16 +98,15 @@ d3.tsv(data_url,function (error,data){
     data.forEach(function(d){
         // ths + on the front converts it into a number just in case
         d.Expression_Value = +d.Expression_Value;
-        d.Standard_Deviation = +d.Standard_Deviation;
         d.Probe = d.Probe;
         //calculates the max value of the graph otherwise sets it to 0
         //calculates the min value and uses this if max < 0 otherwise sets to 0
         //increment valye = max - min.
-        if(d.Expression_Value + d.Standard_Deviation > max){
-            max = d.Expression_Value + d.Standard_Deviation;
+        if(d.Expression_Value > max){
+            max = d.Expression_Value;
         }
-        if(d.Expression_Value - d.Standard_Deviation < min){
-            min = d.Expression_Value - d.Standard_Deviation;
+        if(d.Expression_Value < min){
+            min = d.Expression_Value;
         }
         if($.inArray(d.Probe, probes_types) == -1){
             probes_types.push(d.Probe);
@@ -131,7 +131,7 @@ d3.tsv(data_url,function (error,data){
     number_of_increments |= 0;
     probes = probes;
     probe_count = probe_count;
-    title = "Scatter Plot";
+    title = "Violin Plot";
     subtitle1 = "Subtitle"
     subtitle2 = "Subtitle"
     target = rootDiv;
@@ -156,7 +156,7 @@ d3.tsv(data_url,function (error,data){
         error_dividor:100,//100 means error bars will not show when error < 1% value 
         height: 1500,
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
-        horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
+        horizontal_lines: [["Detection Threshold", "green", 0.025]],
         horizontal_line_value_column: 'value',
         //to have horizontal grid lines = width (to span accross the grid), otherwise = 0
         horizontal_grid_lines: width,
@@ -189,7 +189,7 @@ d3.tsv(data_url,function (error,data){
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
         x_middle_title: 500,
-        y_axis_title: "Log2 Expression",
+        y_axis_title: "1/CT",
         y_column: 'Expression_Value'
     }
 
