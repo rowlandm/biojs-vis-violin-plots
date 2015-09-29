@@ -1,7 +1,7 @@
 // if you don't specify a html file, the sniper will generate a div with id "rootDiv"
 var app = require("biojs-vis-violin-plot");
 function round_to_two_decimal_places(num){
-    new_num = Math.round(num * 100) / 100;
+    new_num = Math.round(num * 1000) / 1000;
     return new_num;
 }
 
@@ -58,8 +58,6 @@ var tooltip1 = d3.tip()
 
  
 
-         console.log(d);
-
        return temp; 
     });
 
@@ -69,7 +67,6 @@ var tooltip2 = d3.tip()
     .attr('class', 'd3-tip')
     .offset([0, +110])
     .html(function(d) {
-         console.log(d);
 
        return temp; 
     });
